@@ -1,0 +1,25 @@
+docker run -d --rm --name qtumd_node1 --network=qtum_network -v 
+Node1/node1_qtumd.conf:/home/qtum/qtum.conf:ro -v 
+Node1/node1_data:/data cryptominder/qtum:latest qtumd
+
+
+
+C:\Program Files\Docker Toolbox\docker.exe: Error response from daemon: create Node1/node1_qtumd.conf: "Node1/node1_qtumd.conf" includes invalid characters for a local volume name, only "[a-zA-Z0-9][a-zA-Z0-9_.-]" are allowed. If you intended to pass a host directory, use absolute path.
+See 'C:\Program Files\Docker Toolbox\docker.exe run --help'.
+
+
+Command 
+
+docker run -d --rm --name qtumd_node1 --network=qtum_network -v C:/QTUM/Node1/node1_qtumd.conf:/home/qtum/qtum.conf:ro -v C:/QTUM/Node1/node1_data:/data cryptominder/qtum:latest qtumd
+
+docker run -d --rm --name qtumd_node1 --network=qtum_network -v /C/QTUM/Node1/node1_qtumd.conf:/home/qtum/qtum.conf:ro -v /C/QTUM/Node1/node1_data:/data cryptominder/qtum:latest qtumd
+
+
+docker run -d --rm --name qtumd_node1 -v C:/QTUM/Node1/node1_qtumd.conf:/root/.qtum/qtum.conf -v /C/QTUM/Node1/node1_data:/root/.qtum/ qtum/qtum qtumd
+
+rpcuser=qtumnode1
+rpcpassword=qtumtest1
+
+docker run -i --network container:qtumd_node1 -v /C/QTUM/Node1/node1_qtumd.conf:/home/qtum/qtum.conf:ro -v /C/QTUM/Node1/node1_data:/data cryptominder/qtum:latest qtum-cli getinfo
+
+docker run -i --network container:qtumd_node1 -v /C/QTUM/Node1/node1_qtumd.conf:/home/qtum/qtum.conf:ro -v /C/QTUM/Node1/node1_data:/data cryptominder/qtum:latest qtum-cli generate 1
